@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  DTTextField
 //
-//  Created by dvl.thanki@gmail.com on 04/03/2017.
-//  Copyright (c) 2017 dvl.thanki@gmail.com. All rights reserved.
+//  Created by Dhaval Thanki on 04/03/2017.
+//  Copyright (c) 2017 Dhaval Thanki. All rights reserved.
 //
 
 import UIKit

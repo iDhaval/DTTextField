@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
 
 s.name             = 'DTTextField'
-s.version          = '0.2.0'
+s.version          = '0.2.1'
 s.summary          = 'DTTextField is UITextField library.'
 
   s.description      = <<-DESC

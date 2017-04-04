@@ -29,7 +29,6 @@
 
 /* Begin PBXFileReference section */
 		060B7103A3E600F8B2BD7D22 /* Pods-DTTextField_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DTTextField_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DTTextField_Example/Pods-DTTextField_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		129619B79C78E2FB3BD11150 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		2C22D21F3A2AE3ADC3442B4C /* Pods-DTTextField_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DTTextField_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DTTextField_Tests/Pods-DTTextField_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		4F0D037025A52EC73A143FA2 /* Pods_DTTextField_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DTTextField_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B7FD7AC92A60AFDB02B68F9 /* Pods-DTTextField_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DTTextField_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-DTTextField_Example/Pods-DTTextField_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -43,8 +42,6 @@
 		607FACE51AFB9204008FA782 /* DTTextField_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DTTextField_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
-		7AA19A6CFBC193429B0D82FF /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		8589A4ED845316FD8FBAE58F /* DTTextField.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = DTTextField.podspec; path = ../DTTextField.podspec; sourceTree = "<group>"; };
 		9DCF83E02A68CA6BD5E2E2CF /* Pods-DTTextField_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DTTextField_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DTTextField_Tests/Pods-DTTextField_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		A73FFAC2C238F6E99F680420 /* Pods_DTTextField_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DTTextField_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -92,7 +89,6 @@
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
-				607FACF51AFB993E008FA782 /* Podspec Metadata */,
 				607FACD21AFB9204008FA782 /* Example for DTTextField */,
 				607FACE81AFB9204008FA782 /* Tests */,
 				607FACD11AFB9204008FA782 /* Products */,
@@ -147,16 +143,6 @@
 				607FACEA1AFB9204008FA782 /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		607FACF51AFB993E008FA782 /* Podspec Metadata */ = {
-			isa = PBXGroup;
-			children = (
-				8589A4ED845316FD8FBAE58F /* DTTextField.podspec */,
-				129619B79C78E2FB3BD11150 /* README.md */,
-				7AA19A6CFBC193429B0D82FF /* LICENSE */,
-			);
-			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

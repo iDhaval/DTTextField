@@ -29,6 +29,7 @@ public class DTTextField: UITextField {
     public var floatPlaceholderColor:UIColor           = UIColor.black
     public var floatPlaceholderActiveColor:UIColor     = UIColor.black
     
+    
     public var errorMessage:String = ""{
         didSet{ lblError.text = errorMessage }
     }

@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -108,6 +107,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="W1x-bm-hbZ"/>
                     <connections>
+                        <outlet property="scrollView" destination="3qx-l3-jfU" id="Wim-19-5FL"/>
                         <outlet property="txtConfirmPassword" destination="zBn-BA-f2Y" id="kBp-NH-lSI"/>
                         <outlet property="txtEmail" destination="6gk-3f-Yz6" id="0vh-rG-4OR"/>
                         <outlet property="txtFirstName" destination="LZk-sC-XSt" id="gxg-Mj-Ljm"/>

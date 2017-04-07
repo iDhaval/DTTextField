@@ -11,6 +11,7 @@ import DTTextField
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var txtFirstName: DTTextField!
     @IBOutlet weak var txtLastName: DTTextField!
     @IBOutlet weak var txtEmail: DTTextField!
@@ -35,6 +36,19 @@ class ViewController: UIViewController {
         txtConfirmPassword.errorMessage = confirmPasswordMessage
         
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: .UIKeyboardWillHide, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -67,6 +81,14 @@ class ViewController: UIViewController {
 // MARK: User Define Methods
 extension ViewController{
     
+    func keyboardWillShow(notification:Notification) {
+        guard let keyboardHeight = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue else { return }
+        scrollView.contentInset = UIEdgeInsetsMake(0, 0, keyboardHeight.height, 0)
+    }
+    
+    func keyboardWillHide(notification:Notification) {
+        scrollView.contentInset = .zero
+    }
     
     func validateData() -> Bool {
         

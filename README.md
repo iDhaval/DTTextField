@@ -1,6 +1,6 @@
 # DTTextField
 
-![Version](https://img.shields.io/badge/Pod-V0.2.1-green.svg)
+![Version](https://img.shields.io/badge/Pod-V0.2.2-green.svg)
 ![License](https://img.shields.io/github/license/mashape/apistatus.svg)
 ![Platform](https://img.shields.io/badge/Language-Swift_3.0-orange.svg)
 ![Xcode](https://img.shields.io/badge/Xcode-8.0-blue.svg)
@@ -50,6 +50,8 @@ pod 'DTTextField'
 | floatPlaceholderFont | UIFont | Change font of float placeholder |
 | paddingYFloatLabel | CGFloat | float placeholder top padding |
 | placeholderColor | UIColor | change placeholder color |
+| animateFloatPlaceholder | Bool | animate float placeholder label |
+| hideErrorWhenEditing | Bool | hide error label when typing |
 
 
 ### Important Properties

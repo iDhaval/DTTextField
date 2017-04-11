@@ -2,6 +2,7 @@
 
 ![Version](https://img.shields.io/badge/Pod-V0.2.2-green.svg)
 ![License](https://img.shields.io/github/license/mashape/apistatus.svg)
+[![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/matteocrippa/awesome-swift)
 ![Platform](https://img.shields.io/badge/Language-Swift_3.0-orange.svg)
 ![Xcode](https://img.shields.io/badge/Xcode-8.0-blue.svg)
 

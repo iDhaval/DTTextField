@@ -28,13 +28,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title                           = "Registration"
-        txtFirstName.errorMessage       = firstNameMessage
-        txtLastName.errorMessage        = lastNameMessage
-        txtEmail.errorMessage           = emailMessage
-        txtPassword.errorMessage        = passwordMessage
-        txtConfirmPassword.errorMessage = confirmPasswordMessage
-        
+        title = "Registration"
         // Do any additional setup after loading the view, typically from a nib.
     }
     
@@ -93,34 +87,32 @@ extension ViewController{
     func validateData() -> Bool {
         
         guard !txtFirstName.text!.isEmptyStr else {
-            txtFirstName.showError = true
+            txtFirstName.showError(message: firstNameMessage)
             return false
         }
         
         guard !txtLastName.text!.isEmptyStr else {
-            txtLastName.showError = true
+            txtLastName.showError(message: lastNameMessage)
             return false
         }
         
         guard !txtEmail.text!.isEmptyStr else {
-            txtEmail.showError = true
+            txtEmail.showError(message: emailMessage)
             return false
         }
         
         guard !txtPassword.text!.isEmptyStr else {
-            txtPassword.showError = true
+            txtPassword.showError(message: passwordMessage)
             return false
         }
         
         guard !txtConfirmPassword.text!.isEmptyStr else {
-            txtConfirmPassword.errorMessage = confirmPasswordMessage
-            txtConfirmPassword.showError = true
+            txtConfirmPassword.showError(message: confirmPasswordMessage)
             return false
         }
         
         guard txtPassword.text == txtConfirmPassword.text else {
-            txtConfirmPassword.errorMessage = mismatchPasswordMessage
-            txtConfirmPassword.showError = true
+            txtConfirmPassword.showError(message: mismatchPasswordMessage)
             return false
         }
         

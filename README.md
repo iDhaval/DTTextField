@@ -1,9 +1,9 @@
 # DTTextField
 
-![Version](https://img.shields.io/badge/Pod-V0.2.2-green.svg)
-![License](https://img.shields.io/github/license/mashape/apistatus.svg)
+[![Version](https://img.shields.io/badge/Pod-V0.2.2-green.svg)](https://github.com/iDhaval/DTTextField/releases/tag/0.2.3)
+[![License](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/iDhaval/DTTextField/blob/master/LICENSE)
 [![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/matteocrippa/awesome-swift)
-![Platform](https://img.shields.io/badge/Language-Swift_3.0-orange.svg)
+[![Platform](https://img.shields.io/badge/Language-Swift_3.0-orange.svg)](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/)
 ![Xcode](https://img.shields.io/badge/Xcode-8.0-blue.svg)
 
 ![Demo](https://github.com/iDhaval/DTTextField/blob/master/DTTextField.gif?raw=true)
@@ -44,7 +44,6 @@ pod 'DTTextField'
 | ------------- |------------- | ----- |
 | errorMessage | String | Add your error message to this property|
 | errorFont | UIFont | Change font of error text |
-| showError | Bool | Use to toggle error message|
 | paddingYErrorLabel | CGFloat | Error text top padding |
 | floatPlaceholderColor | UIColor | To change float placeholder color |
 | floatPlaceholderActiveColor | UIColor | To change float placeholder color while TextField is active(First responder)|
@@ -53,16 +52,22 @@ pod 'DTTextField'
 | placeholderColor | UIColor | change placeholder color |
 | animateFloatPlaceholder | Bool | animate float placeholder label |
 | hideErrorWhenEditing | Bool | hide error label when typing |
-
+| floatingDisplayStatus | enum | maintain display status always, never, defaults | 
 
 ### Important Properties
-
 
 | Property name | Type | Remark |
 | ------------- |------------- | ----- |
 | dtLayer | CALayer | If you want to formate DTTextField than use dtLayer property instead of layer |
 | borderColor | UIColor | Change border color of DTTextField |
 | canShowBorder | Bool | Toggle border of DTTextField |
+
+## Methods
+
+| Method Name | Remark |
+| ------------|--------|
+| showError | to show error message |
+| hideError | to hide error message |
 
 ## TODO
 * Add inbuilt validation

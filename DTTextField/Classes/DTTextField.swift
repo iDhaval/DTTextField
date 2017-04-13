@@ -85,8 +85,11 @@ public class DTTextField: UITextField {
         return paddingX
     }
     
+    fileprivate var fontHeight:CGFloat{
+        return ceil(font!.lineHeight)
+    }
+    
     fileprivate var dtLayerHeight:CGFloat{
-        
         return showErrorLabel ? floor(bounds.height - lblError.bounds.size.height - paddingYErrorLabel) : bounds.height
     }
     
@@ -271,10 +274,10 @@ public class DTTextField: UITextField {
         
         guard showErrorLabel else { return CGRect(x: x, y: 0, width: rect.width - paddingX, height: rect.height) }
         
-        let topInset = (rect.size.height - lblError.bounds.size.height - paddingYErrorLabel - ceil(font!.lineHeight)) / 2.0
-        let textY = ((rect.height - ceil(font!.lineHeight)) / 2.0) - topInset
+        let topInset = (rect.size.height - lblError.bounds.size.height - paddingYErrorLabel - fontHeight) / 2.0
+        let textY = topInset - ((rect.height - fontHeight) / 2.0)
         
-        return CGRect(x: x, y: -ceil(textY), width: rect.size.width - paddingX, height: rect.size.height)
+        return CGRect(x: x, y: floor(textY), width: rect.size.width - paddingX, height: rect.size.height)
     }
     
     fileprivate func insetRectForBounds(rect:CGRect) -> CGRect {
@@ -289,9 +292,12 @@ public class DTTextField: UITextField {
                 return insetRectForEmptyBounds(rect: rect)
             }else{
                 let topInset = paddingYFloatLabel + lblFloatPlaceholder.bounds.size.height + (paddingHeight / 2.0)
-                let textOriginalY = (rect.height - font!.lineHeight) / 2.0
-                let textY = textOriginalY - topInset
-                return CGRect(x: x, y: -ceil(textY), width: rect.size.width - paddingX, height: rect.size.height)
+                let textOriginalY = (rect.height - fontHeight) / 2.0
+                var textY = topInset - textOriginalY
+                
+                if textY < 0 { textY = topInset }
+                
+                return CGRect(x: x, y: ceil(textY), width: rect.size.width - paddingX, height: rect.height)
             }
         }
     }
@@ -354,10 +360,13 @@ public class DTTextField: UITextField {
     override public func layoutSubviews() {
         super.layoutSubviews()
         
+        CATransaction.begin()
+        CATransaction.setDisableActions(true)
         dtLayer.frame = CGRect(x: bounds.origin.x,
                                y: bounds.origin.y,
                                width: bounds.width,
                                height: dtLayerHeight)
+        CATransaction.commit()
         
         if showErrorLabel {
             

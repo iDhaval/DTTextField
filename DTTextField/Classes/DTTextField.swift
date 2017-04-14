@@ -295,7 +295,7 @@ public class DTTextField: UITextField {
                 let textOriginalY = (rect.height - fontHeight) / 2.0
                 var textY = topInset - textOriginalY
                 
-                if textY < 0 { textY = topInset }
+                if textY < 0 && !showErrorLabel { textY = topInset }
                 
                 return CGRect(x: x, y: ceil(textY), width: rect.size.width - paddingX, height: rect.height)
             }

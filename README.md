@@ -69,6 +69,10 @@ pod 'DTTextField'
 | showError | to show error message |
 | hideError | to hide error message |
 
+## Note
+
+Don't give height constraint to DTTextField otherwise it won't work properly.
+
 ## TODO
 * Add inbuilt validation
 

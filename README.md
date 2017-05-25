@@ -16,7 +16,7 @@ Floating placeholder inspired from [JVFloatLabeledTextField](https://github.com/
 
 ## Example
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+Clone the repo and run the example project from the Example directory.
 
 ## Requirements
 

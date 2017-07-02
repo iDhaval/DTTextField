@@ -282,7 +282,7 @@ public class DTTextField: UITextField {
     
     fileprivate func insetRectForBounds(rect:CGRect) -> CGRect {
         
-        guard !lblFloatPlaceholder.text!.isEmptyStr else { return insetRectForEmptyBounds(rect: rect) }
+        guard !(lblFloatPlaceholder.text?.isEmptyStr ?? true) else { return insetRectForEmptyBounds(rect: rect) }
         
         if floatingDisplayStatus == .never {
             return insetRectForEmptyBounds(rect: rect)

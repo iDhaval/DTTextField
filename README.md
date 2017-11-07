@@ -21,7 +21,7 @@ Clone the repo and run the example project from the Example directory.
 ## Requirements
 
 * Xcode 8.0
-* Swift 3.0
+* Swift 3.0+
 
 ## Installation
 

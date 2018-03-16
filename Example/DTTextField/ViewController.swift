@@ -17,18 +17,22 @@ class ViewController: UIViewController {
     @IBOutlet weak var txtPassword: DTTextField!
     @IBOutlet weak var txtConfirmPassword: DTTextField!
     
-    let firstNameMessage        = "First name is required."
-    let lastNameMessage         = "Last name is requried."
-    let emailMessage            = "Email is required."
-    let passwordMessage         = "Password is required."
-    let confirmPasswordMessage  = "Confirm password is required."
-    let mismatchPasswordMessage = "Password and Confirm password are not matching."
+    let firstNameMessage        = NSLocalizedString("First name is required.", comment: "")
+    let lastNameMessage         = NSLocalizedString("Last name is required.", comment: "")
+    let emailMessage            = NSLocalizedString("Email is required.", comment: "")
+    let passwordMessage         = NSLocalizedString("Password is required.", comment: "")
+    let confirmPasswordMessage  = NSLocalizedString("Confirm password is required.", comment: "")
+    let mismatchPasswordMessage = NSLocalizedString("Password and Confirm password are not matching.", comment: "")
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        title = "Registration"
+    
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -74,12 +78,12 @@ class ViewController: UIViewController {
 // MARK: User Define Methods
 extension ViewController{
     
-    func keyboardWillShow(notification:Notification) {
+    @objc func keyboardWillShow(notification:Notification) {
         guard let keyboardHeight = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue else { return }
         scrollView.contentInset = UIEdgeInsetsMake(0, 0, keyboardHeight.height, 0)
     }
     
-    func keyboardWillHide(notification:Notification) {
+    @objc func keyboardWillHide(notification:Notification) {
         scrollView.contentInset = .zero
     }
     
@@ -99,7 +103,7 @@ extension ViewController{
             txtEmail.showError(message: emailMessage)
             return false
         }
-        
+
         guard !txtPassword.text!.isEmptyStr else {
             txtPassword.showError(message: passwordMessage)
             return false

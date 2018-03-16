@@ -1,0 +1,18 @@
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "63c-z6-Pat"; */
+"vOV-P3-5my.placeholder" = "كلمه السر";
+
+/* Class = "UITextField"; placeholder = "Email"; ObjectID = "6gk-3f-Yz6"; */
+"G8b-0H-NOp.placeholder" = "البريد الإلكتروني";
+
+/* Class = "UITextField"; placeholder = "First Name"; ObjectID = "LZk-sC-XSt"; */
+"LZk-sC-XSt.placeholder" = "الاسم الاول";
+
+/* Class = "UIButton"; normalTitle = "Register"; ObjectID = "Vp4-XI-7k7"; */
+"Vp4-XI-7k7.normalTitle" = "تسجيل";
+
+/* Class = "UITextField"; placeholder = "Last Name"; ObjectID = "ZMK-KE-9Cc"; */
+"ZMK-KE-9Cc.placeholder" = "الكنية";
+
+/* Class = "UITextField"; placeholder = "Confirm Password"; ObjectID = "zBn-BA-f2Y"; */
+"oVW-xu-ETH.placeholder" = "تأكيد كلمة المرور";

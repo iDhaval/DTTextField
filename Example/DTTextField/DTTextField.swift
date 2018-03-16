@@ -24,6 +24,12 @@ public class DTTextField: UITextField {
         case defaults
     }
     
+    public enum DTBorderStyle{
+        case none
+        case rounded
+        case sqare
+    }
+    
     fileprivate var lblFloatPlaceholder:UILabel             = UILabel()
     fileprivate var lblError:UILabel                        = UILabel()
     
@@ -36,6 +42,24 @@ public class DTTextField: UITextField {
     public var floatPlaceholderActiveColor:UIColor          = UIColor.black
     public var floatingLabelShowAnimationDuration           = 0.3
     public var floatingDisplayStatus:FloatingDisplayStatus  = .defaults
+    
+    public var dtborderStyle:DTBorderStyle = .rounded{
+        didSet{
+            switch dtborderStyle {
+            case .none:
+                dtLayer.cornerRadius        = 0.0
+                dtLayer.borderWidth         = 0.0
+            case .rounded:
+                dtLayer.cornerRadius        = 4.5
+                dtLayer.borderWidth         = 0.5
+                dtLayer.borderColor         = borderColor.cgColor
+            case .sqare:
+                dtLayer.cornerRadius        = 0.0
+                dtLayer.borderWidth         = 0.5
+                dtLayer.borderColor         = borderColor.cgColor
+            }
+        }
+    }
     
     public var errorMessage:String = ""{
         didSet{ lblError.text = errorMessage }
@@ -72,14 +96,14 @@ public class DTTextField: UITextField {
         didSet{
             guard let color = placeholderColor else { return }
             attributedPlaceholder = NSAttributedString(string: placeholderFinal,
-                                                       attributes: [NSForegroundColorAttributeName:color])
+                                                       attributes: [NSAttributedStringKey.foregroundColor:color])
         }
     }
     
     fileprivate var x:CGFloat {
         
         if let leftView = leftView {
-            return leftView.frame.origin.x + leftView.bounds.size.width + paddingX
+            return leftView.frame.origin.x + leftView.bounds.size.width - paddingX
         }
         
         return paddingX
@@ -137,6 +161,10 @@ public class DTTextField: UITextField {
         }
     }
     
+    public override var textAlignment: NSTextAlignment{
+        didSet{ setNeedsLayout() }
+    }
+    
     public override var text: String?{
         didSet{ self.textFieldTextChanged() }
     }
@@ -149,7 +177,7 @@ public class DTTextField: UITextField {
                 return
             }
             attributedPlaceholder = NSAttributedString(string: placeholderFinal,
-                                                       attributes: [NSForegroundColorAttributeName:color])
+                                                       attributes: [NSAttributedStringKey.foregroundColor:color])
         }
     }
     
@@ -176,11 +204,10 @@ public class DTTextField: UITextField {
         showErrorLabel = false
     }
     
+
     fileprivate func commonInit() {
         
-        dtLayer.cornerRadius        = 4.5
-        dtLayer.borderWidth         = 0.5
-        dtLayer.borderColor         = borderColor.cgColor
+        dtborderStyle               = .rounded
         dtLayer.backgroundColor     = UIColor.white.cgColor
         
         floatPlaceholderColor       = UIColor(red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0)
@@ -209,10 +236,50 @@ public class DTTextField: UITextField {
         
         lblError.text = errorMessage
         lblError.isHidden = false
-        let boundWithPadding = CGSize(width: bounds.width - (x * 2), height: bounds.height)
-        let errorLabelSize =  lblError.sizeThatFits(boundWithPadding)
-        lblError.frame = CGRect(x: paddingX, y: 0, width: errorLabelSize.width, height: errorLabelSize.height)
+        let boundWithPadding = CGSize(width: bounds.width - (paddingX * 2), height: bounds.height)
+        lblError.frame = CGRect(x: paddingX, y: 0, width: boundWithPadding.width, height: boundWithPadding.height)
+        lblError.sizeToFit()
+        
         invalidateIntrinsicContentSize()
+    }
+    
+    func setErrorLabelAlignment() {
+        var newFrame = lblError.frame
+        
+        if textAlignment == .right {
+            newFrame.origin.x = bounds.width - paddingX - newFrame.size.width
+        }else if textAlignment == .left{
+            newFrame.origin.x = paddingX
+        }else if textAlignment == .center{
+            newFrame.origin.x = (bounds.width / 2.0) - (newFrame.size.width / 2.0)
+        }else if textAlignment == .natural{
+            
+            if UIView.userInterfaceLayoutDirection(for: semanticContentAttribute) == .rightToLeft{
+                newFrame.origin.x = bounds.width - paddingX - newFrame.size.width
+            }
+        }
+        
+        lblError.frame = newFrame
+    }
+    
+    func setFloatLabelAlignment() {
+        var newFrame = lblFloatPlaceholder.frame
+        
+        if textAlignment == .right {
+            newFrame.origin.x = bounds.width - paddingX - newFrame.size.width
+        }else if textAlignment == .left{
+            newFrame.origin.x = paddingX
+        }else if textAlignment == .center{
+            newFrame.origin.x = (bounds.width / 2.0) - (newFrame.size.width / 2.0)
+        }else if textAlignment == .natural{
+            
+            if UIView.userInterfaceLayoutDirection(for: semanticContentAttribute) == .rightToLeft{
+                newFrame.origin.x = bounds.width - paddingX - newFrame.size.width
+            }
+        
+        }
+        
+        lblFloatPlaceholder.frame = newFrame
     }
     
     fileprivate func hideErrorMessage(){
@@ -271,13 +338,13 @@ public class DTTextField: UITextField {
     }
     
     fileprivate func insetRectForEmptyBounds(rect:CGRect) -> CGRect{
-        
-        guard showErrorLabel else { return CGRect(x: x, y: 0, width: rect.width - paddingX, height: rect.height) }
+        let newX = x
+        guard showErrorLabel else { return CGRect(x: newX, y: 0, width: rect.width - newX - paddingX, height: rect.height) }
         
         let topInset = (rect.size.height - lblError.bounds.size.height - paddingYErrorLabel - fontHeight) / 2.0
         let textY = topInset - ((rect.height - fontHeight) / 2.0)
         
-        return CGRect(x: x, y: floor(textY), width: rect.size.width - paddingX, height: rect.size.height)
+        return CGRect(x: newX, y: floor(textY), width: rect.size.width - newX - paddingX, height: rect.size.height)
     }
     
     fileprivate func insetRectForBounds(rect:CGRect) -> CGRect {
@@ -298,8 +365,8 @@ public class DTTextField: UITextField {
                 var textY = topInset - textOriginalY
                 
                 if textY < 0 && !showErrorLabel { textY = topInset }
-                
-                return CGRect(x: x, y: ceil(textY), width: rect.size.width - paddingX, height: rect.height)
+                let newX = x
+                return CGRect(x: newX, y: ceil(textY), width: rect.size.width - newX - paddingX, height: rect.height)
             }
         }
     }
@@ -313,8 +380,6 @@ public class DTTextField: UITextField {
         self.layoutIfNeeded()
         
         let textFieldIntrinsicContentSize = super.intrinsicContentSize
-        
-        lblError.sizeToFit()
         
         if showErrorLabel {
             lblFloatPlaceholder.sizeToFit()
@@ -383,6 +448,8 @@ public class DTTextField: UITextField {
                                            width: floatingLabelSize.width,
                                            height: floatingLabelSize.height)
         
+        setErrorLabelAlignment()
+        setFloatLabelAlignment()
         lblFloatPlaceholder.textColor = isFirstResponder ? floatPlaceholderActiveColor : floatPlaceholderColor
         
         switch floatingDisplayStatus {
@@ -398,4 +465,5 @@ public class DTTextField: UITextField {
             }
         }
     }
+
 }

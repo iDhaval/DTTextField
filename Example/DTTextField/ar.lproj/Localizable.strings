@@ -1,0 +1,14 @@
+/* 
+  Arabic.strings
+  DTTextField
+
+  Created by Dhaval Thanki on 16/03/18.
+  Copyright © 2018 CocoaPods. All rights reserved.
+*/
+
+"First name is required." = "الإسم الأول مطلوب.";
+"Last name is requried." = "الاسم الأخير مطلوب.";
+"Email is required." = "البريد الالكتروني مطلوب.";
+"Password is required." = "كلمة المرور مطلوبة.";
+"Confirm password is required." = "تأكيد كلمة المرور مطلوب.";
+"Password and Confirm password are not matching." = "كلمة المرور وتأكيد كلمة المرورغير متطابقين.";

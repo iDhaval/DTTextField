@@ -20,8 +20,8 @@ Clone the repo and run the example project from the Example directory.
 
 ## Requirements
 
-* Xcode 8.0+
-* Swift 3.0+
+* Xcode 9.0+
+* Swift 4.0+
 
 ## Installation
 
@@ -53,6 +53,7 @@ pod 'DTTextField'
 | animateFloatPlaceholder | Bool | animate float placeholder label |
 | hideErrorWhenEditing | Bool | hide error label when typing |
 | floatingDisplayStatus | enum | maintain display status always, never, defaults | 
+| dtborderStyle | enum | none, rounded , sqare |
 
 ### Important Properties
 

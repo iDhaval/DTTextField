@@ -29,23 +29,18 @@ class ViewController: UIViewController {
     
         // Do any additional setup after loading the view, typically from a nib.
     }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
         
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: .UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: .UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -59,28 +54,28 @@ class ViewController: UIViewController {
         
         let alert = UIAlertController(title: "Congratulations", message: "Your registration is successful!!!", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (cancel) in
-            
-            DispatchQueue.main.async {
-                self.txtFirstName.text       = ""
-                self.txtLastName.text        = ""
-                self.txtEmail.text           = ""
-                self.txtConfirmPassword.text = ""
-                self.txtPassword.text        = ""
-            }
+            DispatchQueue.main.async { self.clearForm() }
         }))
         
         present(alert, animated: true, completion: nil)
         
     }
-
+    
+    func clearForm() {
+        self.txtFirstName.text       = ""
+        self.txtLastName.text        = ""
+        self.txtEmail.text           = ""
+        self.txtConfirmPassword.text = ""
+        self.txtPassword.text        = ""
+    }
 }
 
 // MARK: User Define Methods
 extension ViewController{
     
     @objc func keyboardWillShow(notification:Notification) {
-        guard let keyboardHeight = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue else { return }
-        scrollView.contentInset = UIEdgeInsetsMake(0, 0, keyboardHeight.height, 0)
+        guard let keyboardHeight = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue else { return }
+        scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardHeight.height, right: 0)
     }
     
     @objc func keyboardWillHide(notification:Notification) {

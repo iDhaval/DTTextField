@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Kzc-T6-rcN">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Kzc-T6-rcN">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,65 +20,60 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3qx-l3-jfU">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T5N-VG-n0n">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="307"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LZk-sC-XSt" customClass="DTTextField" customModule="DTTextField_Example" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="50" width="343" height="30"/>
-                                                <nil key="textColor"/>
+                                                <rect key="frame" x="16" y="50" width="343" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZMK-KE-9Cc" customClass="DTTextField" customModule="DTTextField_Example" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="88" width="343" height="30"/>
-                                                <nil key="textColor"/>
+                                                <rect key="frame" x="16" y="92" width="343" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vp4-XI-7k7">
-                                                <rect key="frame" x="158.5" y="242" width="57" height="30"/>
+                                                <rect key="frame" x="159" y="262" width="57" height="30"/>
                                                 <state key="normal" title="Register"/>
                                                 <connections>
                                                     <action selector="onBtnSubmitClicked:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="vbi-gx-VFd"/>
                                                 </connections>
                                             </button>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="G8b-0H-NOp" customClass="DTTextField" customModule="DTTextField_Example" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="126" width="343" height="30"/>
-                                                <nil key="textColor"/>
+                                                <rect key="frame" x="16" y="134" width="343" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vOV-P3-5my" customClass="DTTextField" customModule="DTTextField_Example" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="164" width="343" height="30"/>
-                                                <nil key="textColor"/>
+                                                <rect key="frame" x="16" y="176" width="343" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oVW-xu-ETH" customClass="DTTextField" customModule="DTTextField_Example" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="202" width="343" height="30"/>
-                                                <nil key="textColor"/>
+                                                <rect key="frame" x="16" y="218" width="343" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstItem="oVW-xu-ETH" firstAttribute="leading" secondItem="vOV-P3-5my" secondAttribute="leading" id="2Ox-na-6ZX"/>
+                                            <constraint firstItem="oVW-xu-ETH" firstAttribute="trailing" secondItem="vOV-P3-5my" secondAttribute="trailing" id="2Eh-Ef-dQi"/>
+                                            <constraint firstItem="oVW-xu-ETH" firstAttribute="leading" secondItem="vOV-P3-5my" secondAttribute="leading" id="2iy-n5-w9F"/>
                                             <constraint firstAttribute="trailing" secondItem="LZk-sC-XSt" secondAttribute="trailing" constant="16" id="7xF-Yy-7dc"/>
                                             <constraint firstItem="LZk-sC-XSt" firstAttribute="leading" secondItem="T5N-VG-n0n" secondAttribute="leading" constant="16" id="8fK-In-ELG"/>
                                             <constraint firstItem="G8b-0H-NOp" firstAttribute="top" secondItem="ZMK-KE-9Cc" secondAttribute="bottom" constant="8" id="9MY-nz-wjQ"/>
                                             <constraint firstItem="vOV-P3-5my" firstAttribute="trailing" secondItem="G8b-0H-NOp" secondAttribute="trailing" id="BZ6-is-x2y"/>
                                             <constraint firstItem="Vp4-XI-7k7" firstAttribute="top" secondItem="oVW-xu-ETH" secondAttribute="bottom" constant="10" id="Czg-UB-G6G"/>
-                                            <constraint firstItem="oVW-xu-ETH" firstAttribute="trailing" secondItem="vOV-P3-5my" secondAttribute="trailing" id="FFZ-h7-nmL"/>
                                             <constraint firstItem="vOV-P3-5my" firstAttribute="leading" secondItem="G8b-0H-NOp" secondAttribute="leading" id="FlG-Yh-6D8"/>
-                                            <constraint firstAttribute="bottom" secondItem="Vp4-XI-7k7" secondAttribute="bottom" constant="35" id="HWJ-ke-SwV"/>
+                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Vp4-XI-7k7" secondAttribute="bottom" constant="35" id="HWJ-ke-SwV"/>
                                             <constraint firstItem="ZMK-KE-9Cc" firstAttribute="leading" secondItem="LZk-sC-XSt" secondAttribute="leading" id="Jzj-d1-Cuc"/>
                                             <constraint firstItem="G8b-0H-NOp" firstAttribute="leading" secondItem="ZMK-KE-9Cc" secondAttribute="leading" id="X9C-jl-FiE"/>
                                             <constraint firstItem="ZMK-KE-9Cc" firstAttribute="top" secondItem="LZk-sC-XSt" secondAttribute="bottom" constant="8" id="XKP-xw-pz9"/>
                                             <constraint firstItem="oVW-xu-ETH" firstAttribute="top" secondItem="vOV-P3-5my" secondAttribute="bottom" constant="8" id="eEv-lG-Ktc"/>
-                                            <constraint firstItem="Vp4-XI-7k7" firstAttribute="centerX" secondItem="oVW-xu-ETH" secondAttribute="centerX" id="noc-qO-6TG"/>
+                                            <constraint firstItem="Vp4-XI-7k7" firstAttribute="centerX" secondItem="T5N-VG-n0n" secondAttribute="centerX" id="ikl-qL-tO7"/>
                                             <constraint firstItem="G8b-0H-NOp" firstAttribute="trailing" secondItem="ZMK-KE-9Cc" secondAttribute="trailing" id="onN-5k-UBd"/>
                                             <constraint firstItem="LZk-sC-XSt" firstAttribute="top" secondItem="T5N-VG-n0n" secondAttribute="top" constant="50" id="pmI-vf-fOU"/>
                                             <constraint firstItem="ZMK-KE-9Cc" firstAttribute="trailing" secondItem="LZk-sC-XSt" secondAttribute="trailing" id="tZs-73-KYu"/>
@@ -118,7 +111,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="964" y="36.431784107946029"/>
+            <point key="canvasLocation" x="554" y="46"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="sQ1-e3-OIZ">
@@ -126,7 +119,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Kzc-T6-rcN" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="rBs-ML-edK">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -136,7 +129,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qlg-7C-Sy0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="122" y="36"/>
+            <point key="canvasLocation" x="-194" y="47"/>
         </scene>
     </scenes>
 </document>

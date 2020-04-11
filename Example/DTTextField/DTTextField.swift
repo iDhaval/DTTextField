@@ -28,6 +28,10 @@ public class DTTextField: UITextField {
         case none
         case rounded
         case sqare
+        case top
+        case bottom
+        case left
+        case right
     }
     
     fileprivate var lblFloatPlaceholder:UILabel             = UILabel()
@@ -36,27 +40,48 @@ public class DTTextField: UITextField {
     fileprivate let paddingX:CGFloat                        = 5.0
     
     fileprivate let paddingHeight:CGFloat                   = 10.0
-    
+    fileprivate var borderLayer:CALayer                     = CALayer()
     public var dtLayer:CALayer                              = CALayer()
     public var floatPlaceholderColor:UIColor                = UIColor.black
     public var floatPlaceholderActiveColor:UIColor          = UIColor.black
     public var floatingLabelShowAnimationDuration           = 0.3
     public var floatingDisplayStatus:FloatingDisplayStatus  = .defaults
+    public var borderWidth:CGFloat                          = 0.5{
+        didSet{
+            let borderStyle = dtborderStyle;
+            dtborderStyle = borderStyle
+        }
+    }
     
     public var dtborderStyle:DTBorderStyle = .rounded{
         didSet{
+            borderLayer.removeFromSuperlayer()
             switch dtborderStyle {
             case .none:
                 dtLayer.cornerRadius        = 0.0
                 dtLayer.borderWidth         = 0.0
             case .rounded:
                 dtLayer.cornerRadius        = 4.5
-                dtLayer.borderWidth         = 0.5
+                dtLayer.borderWidth         = borderWidth
                 dtLayer.borderColor         = borderColor.cgColor
             case .sqare:
                 dtLayer.cornerRadius        = 0.0
-                dtLayer.borderWidth         = 0.5
+                dtLayer.borderWidth         = borderWidth
                 dtLayer.borderColor         = borderColor.cgColor
+            case .bottom,.left,.right,.top:
+                dtLayer.cornerRadius        = 0.0
+                dtLayer.borderWidth         = 0.0
+                borderLayer.backgroundColor = borderColor.cgColor
+                if dtborderStyle == .bottom {
+                    borderLayer.frame = CGRect(x: 0, y: dtLayer.bounds.size.height - borderWidth, width: dtLayer.bounds.size.width, height: borderWidth)
+                }else if dtborderStyle == .left{
+                    borderLayer.frame = CGRect(x: 0, y: 0, width: borderWidth, height: dtLayer.bounds.size.height)
+                }else if dtborderStyle == .right{
+                    borderLayer.frame = CGRect(x: dtLayer.bounds.size.width - borderWidth, y: 0, width: borderWidth, height: dtLayer.bounds.size.height)
+                }else{
+                    borderLayer.frame = CGRect(x: 0, y: 0, width: dtLayer.bounds.size.width, height: borderWidth)
+                }
+                dtLayer.addSublayer(borderLayer)
             }
         }
     }
@@ -69,11 +94,17 @@ public class DTTextField: UITextField {
     public var hideErrorWhenEditing:Bool   = true
     
     public var errorFont = UIFont.systemFont(ofSize: 10.0){
-        didSet{ invalidateIntrinsicContentSize() }
+        didSet{
+            lblError.font = errorFont
+            invalidateIntrinsicContentSize()
+        }
     }
     
     public var floatPlaceholderFont = UIFont.systemFont(ofSize: 10.0){
-        didSet{ invalidateIntrinsicContentSize() }
+        didSet{
+            lblFloatPlaceholder.font = floatPlaceholderFont
+            invalidateIntrinsicContentSize()
+        }
     }
     
     public var paddingYFloatLabel:CGFloat = 3.0{
@@ -85,18 +116,32 @@ public class DTTextField: UITextField {
     }
     
     public var borderColor:UIColor = UIColor(red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0){
-        didSet{ dtLayer.borderColor = borderColor.cgColor }
+        didSet{
+            switch dtborderStyle {
+            case .none,.rounded,.sqare:
+                dtLayer.borderColor = borderColor.cgColor
+            case .bottom,.right,.top,.left:
+                borderLayer.backgroundColor = borderColor.cgColor
+            }
+        }
     }
     
     public var canShowBorder:Bool = true{
-        didSet{ dtLayer.isHidden = !canShowBorder }
+        didSet{
+            switch dtborderStyle {
+            case .none,.rounded,.sqare:
+                dtLayer.isHidden = !canShowBorder
+            case .bottom,.right,.top,.left:
+                borderLayer.isHidden = !canShowBorder
+            }
+        }
     }
     
     public var placeholderColor:UIColor?{
         didSet{
             guard let color = placeholderColor else { return }
             attributedPlaceholder = NSAttributedString(string: placeholderFinal,
-                                                       attributes: [NSAttributedStringKey.foregroundColor:color])
+                                                       attributes: [NSAttributedString.Key.foregroundColor:color])
         }
     }
     
@@ -154,7 +199,7 @@ public class DTTextField: UITextField {
         }
     }
     
-    override public var borderStyle: UITextBorderStyle{
+    override public var borderStyle: UITextField.BorderStyle{
         didSet{
             guard borderStyle != oldValue else { return }
             borderStyle = .none
@@ -177,7 +222,7 @@ public class DTTextField: UITextField {
                 return
             }
             attributedPlaceholder = NSAttributedString(string: placeholderFinal,
-                                                       attributes: [NSAttributedStringKey.foregroundColor:color])
+                                                       attributes: [NSAttributedString.Key.foregroundColor:color])
         }
     }
     
@@ -433,6 +478,8 @@ public class DTTextField: UITextField {
                                y: bounds.origin.y,
                                width: bounds.width,
                                height: dtLayerHeight)
+        let borderStype = dtborderStyle
+        dtborderStyle = borderStype
         CATransaction.commit()
         
         if showErrorLabel {

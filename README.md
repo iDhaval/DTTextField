@@ -20,8 +20,8 @@ Clone the repo and run the example project from the Example directory.
 
 ## Requirements
 
-* Xcode 9.0+
-* Swift 4.0+
+* Xcode 11.0+
+* Swift 5.0+
 
 ## Installation
 

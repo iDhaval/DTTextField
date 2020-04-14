@@ -62,7 +62,7 @@ pod 'DTTextField'
 | dtLayer | CALayer | If you want to formate DTTextField than use dtLayer property instead of layer (e.g. background color) |
 | borderColor | UIColor | Change border color of DTTextField |
 | canShowBorder | Bool | Toggle border of DTTextField |
-| dtborderStyle | enum | none, rounded , sqare |
+| dtborderStyle | enum | none, rounded , sqare , top , bottom , left , right |
 
 ## Methods
 

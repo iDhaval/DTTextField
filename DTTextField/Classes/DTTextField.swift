@@ -53,6 +53,13 @@ public class DTTextField: UITextField {
         }
     }
     
+    public var cornerRadius:CGFloat                          = 4.5{
+        didSet{
+            let borderStyle = dtborderStyle;
+            dtborderStyle = borderStyle
+        }
+    }
+    
     public var dtborderStyle:DTBorderStyle = .rounded{
         didSet{
             borderLayer.removeFromSuperlayer()
@@ -61,7 +68,7 @@ public class DTTextField: UITextField {
                 dtLayer.cornerRadius        = 0.0
                 dtLayer.borderWidth         = 0.0
             case .rounded:
-                dtLayer.cornerRadius        = 4.5
+                dtLayer.cornerRadius        = cornerRadius
                 dtLayer.borderWidth         = borderWidth
                 dtLayer.borderColor         = borderColor.cgColor
             case .sqare:

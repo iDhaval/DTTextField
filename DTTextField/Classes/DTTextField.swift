@@ -106,6 +106,11 @@ public class DTTextField: UITextField {
             invalidateIntrinsicContentSize()
         }
     }
+    public var errorColor = UIColor.red {
+        didSet{
+            lblError.textColor = errorColor
+        }
+    }
     
     public var floatPlaceholderFont = UIFont.systemFont(ofSize: 10.0){
         didSet{
@@ -273,7 +278,7 @@ public class DTTextField: UITextField {
         
         lblError.frame              = CGRect.zero
         lblError.font               = errorFont
-        lblError.textColor          = UIColor.red
+        lblError.textColor          = errorColor
         lblError.numberOfLines      = 0
         lblError.isHidden           = true
         

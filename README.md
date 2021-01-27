@@ -44,6 +44,7 @@ pod 'DTTextField'
 | ------------- |------------- | ----- |
 | errorMessage | String | Add your error message to this property|
 | errorFont | UIFont | Change font of error text |
+| errorColor | UIColor | Change color of error text |
 | paddingYErrorLabel | CGFloat | Error text top padding |
 | floatPlaceholderColor | UIColor | To change float placeholder color |
 | floatPlaceholderActiveColor | UIColor | To change float placeholder color while TextField is active(First responder)|

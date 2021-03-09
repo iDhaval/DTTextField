@@ -399,7 +399,8 @@ public class DTTextField: UITextField {
         guard showErrorLabel else { return CGRect(x: newX, y: 0, width: rect.width - newX - paddingX, height: rect.height) }
         
         let topInset = (rect.size.height - lblError.bounds.size.height - paddingYErrorLabel - fontHeight) / 2.0
-        let textY = topInset - ((rect.height - fontHeight) / 2.0)
+        let textOriginalY = (rect.height - fontHeight) / 2.0
+        let textY = abs(topInset - textOriginalY)
         
         return CGRect(x: newX, y: floor(textY), width: rect.size.width - newX - paddingX, height: rect.size.height)
     }
@@ -419,9 +420,9 @@ public class DTTextField: UITextField {
             }else{
                 let topInset = paddingYFloatLabel + lblFloatPlaceholder.bounds.size.height + (paddingHeight / 2.0)
                 let textOriginalY = (rect.height - fontHeight) / 2.0
-                var textY = topInset - textOriginalY
+                let textY = abs(topInset - textOriginalY)
                 
-                if textY < 0 && !showErrorLabel { textY = topInset }
+//                if textY < 0 && !showErrorLabel { textY = topInset }
                 let newX = x
                 return CGRect(x: newX, y: ceil(textY), width: rect.size.width - newX - paddingX, height: rect.height)
             }

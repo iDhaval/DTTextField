@@ -44,6 +44,7 @@ pod 'DTTextField'
 | ------------- |------------- | ----- |
 | errorMessage | String | Add your error message to this property|
 | errorFont | UIFont | Change font of error text |
+| errorColor | UIColor | Change color of error text |
 | paddingYErrorLabel | CGFloat | Error text top padding |
 | floatPlaceholderColor | UIColor | To change float placeholder color |
 | floatPlaceholderActiveColor | UIColor | To change float placeholder color while TextField is active(First responder)|
@@ -61,6 +62,7 @@ pod 'DTTextField'
 | ------------- |------------- | ----- |
 | dtLayer | CALayer | If you want to formate DTTextField than use dtLayer property instead of layer (e.g. background color) |
 | borderColor | UIColor | Change border color of DTTextField |
+| cornerRadius | CGFloat | Change radius border of DTTextField - Used only with Style "rounded" |
 | canShowBorder | Bool | Toggle border of DTTextField |
 | dtborderStyle | enum | none, rounded , sqare , top , bottom , left , right |
 

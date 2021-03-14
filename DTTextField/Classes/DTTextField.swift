@@ -53,6 +53,13 @@ public class DTTextField: UITextField {
         }
     }
     
+    public var cornerRadius:CGFloat                          = 4.5{
+        didSet{
+            let borderStyle = dtborderStyle;
+            dtborderStyle = borderStyle
+        }
+    }
+    
     public var dtborderStyle:DTBorderStyle = .rounded{
         didSet{
             borderLayer.removeFromSuperlayer()
@@ -61,7 +68,7 @@ public class DTTextField: UITextField {
                 dtLayer.cornerRadius        = 0.0
                 dtLayer.borderWidth         = 0.0
             case .rounded:
-                dtLayer.cornerRadius        = 4.5
+                dtLayer.cornerRadius        = cornerRadius
                 dtLayer.borderWidth         = borderWidth
                 dtLayer.borderColor         = borderColor.cgColor
             case .sqare:
@@ -97,6 +104,11 @@ public class DTTextField: UITextField {
         didSet{
             lblError.font = errorFont
             invalidateIntrinsicContentSize()
+        }
+    }
+    public var errorColor = UIColor.red {
+        didSet{
+            lblError.textColor = errorColor
         }
     }
     
@@ -266,7 +278,7 @@ public class DTTextField: UITextField {
         
         lblError.frame              = CGRect.zero
         lblError.font               = errorFont
-        lblError.textColor          = UIColor.red
+        lblError.textColor          = errorColor
         lblError.numberOfLines      = 0
         lblError.isHidden           = true
         
@@ -387,7 +399,8 @@ public class DTTextField: UITextField {
         guard showErrorLabel else { return CGRect(x: newX, y: 0, width: rect.width - newX - paddingX, height: rect.height) }
         
         let topInset = (rect.size.height - lblError.bounds.size.height - paddingYErrorLabel - fontHeight) / 2.0
-        let textY = topInset - ((rect.height - fontHeight) / 2.0)
+        let textOriginalY = (rect.height - fontHeight) / 2.0
+        let textY = floor(topInset - textOriginalY)
         
         return CGRect(x: newX, y: floor(textY), width: rect.size.width - newX - paddingX, height: rect.size.height)
     }
@@ -407,9 +420,9 @@ public class DTTextField: UITextField {
             }else{
                 let topInset = paddingYFloatLabel + lblFloatPlaceholder.bounds.size.height + (paddingHeight / 2.0)
                 let textOriginalY = (rect.height - fontHeight) / 2.0
-                var textY = topInset - textOriginalY
+                var textY = ceil(topInset - textOriginalY)
                 
-                if textY < 0 && !showErrorLabel { textY = topInset }
+                if textY < 0 && !showErrorLabel { textY = abs(topInset - textOriginalY) }
                 let newX = x
                 return CGRect(x: newX, y: ceil(textY), width: rect.size.width - newX - paddingX, height: rect.height)
             }

@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
 
 s.name             = 'DTTextField'
-s.version          = '0.4.0'
+s.version          = '0.5.0'
 s.summary          = 'DTTextField is UITextField library.'
 
   s.description      = <<-DESC
@@ -23,7 +23,7 @@ s.source           = { :git => 'https://github.com/iDhaval/DTTextField.git', :ta
 
 s.ios.deployment_target = '9.0'
 
-s.source_files = 'DTTextField/Classes/*.{swift}'
+s.source_files = 'Sources/DTTextField/**/*'
 s.frameworks = 'UIKit'
 
 end

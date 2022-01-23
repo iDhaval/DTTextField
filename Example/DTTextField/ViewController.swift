@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DTTextField
 
 class ViewController: UIViewController {
 

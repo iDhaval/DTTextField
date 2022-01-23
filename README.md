@@ -1,6 +1,6 @@
 # DTTextField
 
-[![Version](https://img.shields.io/badge/Pod-V0.4.0-green.svg)](https://github.com/iDhaval/DTTextField/releases/tag/0.6.0)
+[![Version](https://img.shields.io/badge/Pod-V0.6.0-green.svg)](https://github.com/iDhaval/DTTextField/releases/tag/0.6.0)
 [![License](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/iDhaval/DTTextField/blob/master/LICENSE)
 [![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/matteocrippa/awesome-swift)
 [![Platform](https://img.shields.io/badge/Language-Swift_5.0-orange.svg)](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/)

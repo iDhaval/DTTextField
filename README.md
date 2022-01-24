@@ -38,12 +38,8 @@ pod 'DTTextField'
 
 Click `File` -> `Add Packages...`, enter [DTTextField repo's URL](https://github.com/iDhaval/DTTextField).
 
-If you're a framework author and use DTTextField as a dependency, update your `Package.swift` file:
-
 ```swift
-    dependencies: [
-        .package(url: "https://github.com/iDhaval/DTTextField", from: "0.5.0")
-    ],)
+https://github.com/iDhaval/DTTextField
 ```
 
 ## Usage

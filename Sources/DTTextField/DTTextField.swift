@@ -8,15 +8,31 @@
 
 import Foundation
 import UIKit
+import SwiftUI
+
+public protocol DTDelegate: AnyObject {
+    func editingChangeds(_ value: String, textField: DTTextField)
+}
+
 
 public extension String {
     
     var isEmptyStr:Bool{
-        return self.trimmingCharacters(in: NSCharacterSet.whitespaces).isEmpty
+        if (self.isEmpty){
+            return true
+        }else{
+            return false
+        }
+       // return self.trimmingCharacters(in: NSCharacterSet.whitespaces).isEmpty
     }
 }
 
-public class DTTextField: UITextField {
+
+open class DTTextField: UITextField {
+   
+    
+    
+  
     
     public enum FloatingDisplayStatus{
         case always
@@ -37,7 +53,7 @@ public class DTTextField: UITextField {
     fileprivate var lblFloatPlaceholder:UILabel             = UILabel()
     fileprivate var lblError:UILabel                        = UILabel()
     
-    fileprivate let paddingX:CGFloat                        = 5.0
+    fileprivate let paddingX:CGFloat                        = 10.0
     
     fileprivate let paddingHeight:CGFloat                   = 10.0
     fileprivate var borderLayer:CALayer                     = CALayer()
@@ -61,7 +77,7 @@ public class DTTextField: UITextField {
                 dtLayer.cornerRadius        = 0.0
                 dtLayer.borderWidth         = 0.0
             case .rounded:
-                dtLayer.cornerRadius        = 4.5
+                dtLayer.cornerRadius        = 8
                 dtLayer.borderWidth         = borderWidth
                 dtLayer.borderColor         = borderColor.cgColor
             case .sqare:
@@ -106,7 +122,7 @@ public class DTTextField: UITextField {
         }
     }
     
-    public var floatPlaceholderFont = UIFont.systemFont(ofSize: 10.0){
+    public var floatPlaceholderFont =   UIFont(name:"Roboto-Bold", size: 10.0) ?? UIFont.systemFont(ofSize: 10){
         didSet{
             lblFloatPlaceholder.font = floatPlaceholderFont
             invalidateIntrinsicContentSize()
@@ -193,7 +209,7 @@ public class DTTextField: UITextField {
     fileprivate var showErrorLabel:Bool = false{
         didSet{
             
-            guard showErrorLabel != oldValue else { return }
+//            guard showErrorLabel != oldValue else { return }
             
             guard showErrorLabel else {
                 hideErrorMessage()
@@ -224,16 +240,17 @@ public class DTTextField: UITextField {
         didSet{
             
             guard let color = placeholderColor else {
-                lblFloatPlaceholder.text = placeholderFinal
+                lblFloatPlaceholder.text = placeholderFinal.uppercased()
                 return
             }
+            
             attributedPlaceholder = NSAttributedString(string: placeholderFinal,
                                                        attributes: [NSAttributedString.Key.foregroundColor:color])
         }
     }
     
     override public var attributedPlaceholder: NSAttributedString?{
-        didSet{ lblFloatPlaceholder.text = placeholderFinal }
+        didSet{ lblFloatPlaceholder.text = placeholderFinal.uppercased() }
     }
     
     override public init(frame: CGRect) {
@@ -248,25 +265,33 @@ public class DTTextField: UITextField {
     
     public func showError(message:String? = nil) {
         if let msg = message { errorMessage = msg }
+        borderColor = UIColor.systemRed
         showErrorLabel = true
     }
     
     public func hideError()  {
+        borderColor = UIColor(red: 50/255, green: 172/255, blue: 225/255, alpha: 1.0)
+        showErrorLabel = false
+    }
+    
+    public func hideErrorOnSave(){
+        borderColor = UIColor(red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0)
         showErrorLabel = false
     }
     
 
     fileprivate func commonInit() {
+        delegate=self
         
         dtborderStyle               = .rounded
         dtLayer.backgroundColor     = UIColor.white.cgColor
         
-        floatPlaceholderColor       = UIColor(red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0)
-        floatPlaceholderActiveColor = tintColor
+        floatPlaceholderColor       = UIColor.black
+        floatPlaceholderActiveColor = UIColor.black
         lblFloatPlaceholder.frame   = CGRect.zero
         lblFloatPlaceholder.alpha   = 0.0
         lblFloatPlaceholder.font    = floatPlaceholderFont
-        lblFloatPlaceholder.text    = placeholderFinal
+        lblFloatPlaceholder.text    = placeholderFinal.uppercased()
         
         addSubview(lblFloatPlaceholder)
         
@@ -275,6 +300,8 @@ public class DTTextField: UITextField {
         lblError.textColor          = errorTextColor
         lblError.numberOfLines      = 0
         lblError.isHidden           = true
+        lblError.adjustsFontSizeToFitWidth = false
+        lblError.lineBreakMode = .byTruncatingTail
         
         addTarget(self, action: #selector(textFieldTextChanged), for: .editingChanged)
         
@@ -290,6 +317,7 @@ public class DTTextField: UITextField {
         let boundWithPadding = CGSize(width: bounds.width - (paddingX * 2), height: bounds.height)
         lblError.frame = CGRect(x: paddingX, y: 0, width: boundWithPadding.width, height: boundWithPadding.height)
         lblError.sizeToFit()
+        
         
         invalidateIntrinsicContentSize()
     }
@@ -423,9 +451,18 @@ public class DTTextField: UITextField {
     }
     
     @objc fileprivate func textFieldTextChanged(){
-        guard hideErrorWhenEditing && showErrorLabel else { return }
-        showErrorLabel = false
+        //floatPlaceholderFont = UIFont(name:"Roboto-Bold", size: 10.0) ?? UIFont.systemFont(ofSize: 10)
     }
+    
+//    public func validate() {
+//        guard let text = text?.trimmingCharacters(in: .whitespaces),
+//              !text.isEmpty else {
+//            //shwowRightView(isValid: !isRequired)
+//            showError(message: "Required")
+//            return
+//        }
+//
+//    }
     
     override public var intrinsicContentSize: CGSize{
         self.layoutIfNeeded()
@@ -464,7 +501,7 @@ public class DTTextField: UITextField {
         return insetForSideView(forBounds: rect)
     }
     
-    override public func rightViewRect(forBounds bounds: CGRect) -> CGRect {
+    override open func rightViewRect(forBounds bounds: CGRect) -> CGRect {
         let rect = super.rightViewRect(forBounds: bounds)
         return insetForSideView(forBounds: rect)
     }
@@ -519,4 +556,10 @@ public class DTTextField: UITextField {
         }
     }
 
+}
+
+extension DTTextField : UITextFieldDelegate {
+    open func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        return true
+    }
 }
